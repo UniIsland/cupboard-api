@@ -88,6 +88,7 @@ GEM
       pkg-config (~> 1.1.7)
     pkg-config (1.1.7)
     rack (2.0.1)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0)
@@ -142,6 +143,7 @@ DEPENDENCIES
   capistrano-rails
   jbuilder
   mysql2
+  rack-cors
   rails (~> 5.0.0)
   spring
 

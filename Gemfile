@@ -21,9 +21,7 @@ group :development do
   gem 'annotate'
   gem 'byebug', platform: :mri
   gem 'capistrano-rails'
-  gem 'listen', '~> 3.0.5'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 ## misc

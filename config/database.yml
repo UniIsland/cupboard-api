@@ -13,20 +13,20 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password:
+  username: cupboard
+  password: cupboardmysql
   socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: rails-api-skeleton-5_0_development
+  database: cupboard_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rails-api-skeleton-5_0_test
+  database: cupboard_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: rails-api-skeleton-5_0_production
-  username: rails-api-skeleton-5_0
-  password: <%= ENV['RAILS-API-SKELETON-5_0_DATABASE_PASSWORD'] %>
+  database: cupboard_prod
+  username: cupboard
+  password: <%= ENV['DATABASE_PASSWORD'] %>

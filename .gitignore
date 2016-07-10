@@ -4,5 +4,9 @@
 /tmp
 /vendor/bundle
 
+# Ignore credentials
+/.rbenv-vars
+/.keys
+
 # Ignore Byebug command history file.
 .byebug_history

@@ -4,8 +4,8 @@ require 'fileutils'
 namespace :import do
   desc "import tsv files"
   task tsv: :environment do
-    TSV_DIR = Rails.root + 'tmp/tsv'
-    BACKUP_DIR = Rails.root + 'tmp/tsv_backup/'
+    TSV_DIR = Rails.root + 'tmp/data/tsv'
+    ARCHIVE_DIR = Rails.root + 'tmp/data/archive'
     CSV_OPT = {
       headers: true,
       col_sep: "\t",
@@ -25,8 +25,8 @@ namespace :import do
     end
 
     def read_tsv(fn)
-      namespace = fn.basename.to_s[/^(\w+)-\d\d\./, 1].try(:downcase) || 'zhihu'
-      # raise "no namespace specified" if namespace.nil?
+      namespace = fn.basename.to_s[/^(\w+)-\d\d\./, 1].try(:downcase)
+      raise "no namespace specified" if namespace.nil?
 
       header_processed = false
       record_updated = 0
@@ -49,10 +49,10 @@ namespace :import do
     end
 
     def archive_tsv(fn)
-      FileUtils.mv fn, BACKUP_DIR, verbose: true, force: true
+      FileUtils.mv fn, ARCHIVE_DIR, verbose: true, force: true
     end
 
-    BACKUP_DIR.mkpath
+    ARCHIVE_DIR.mkpath
     TSV_DIR.each_child do |fn|
       puts "reading #{fn} :"
       record_updated = read_tsv fn

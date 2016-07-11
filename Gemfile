@@ -17,14 +17,15 @@ gem 'jbuilder'#, '~> 2.5'
 
 gem 'rack-cors'
 
-## app
+## web server
 
-# gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.0'
 
 group :development do
   gem 'annotate'
   gem 'byebug', platform: :mri
   gem 'capistrano-rails'
+  gem 'capistrano3-puma'
   gem 'spring'
 end
 

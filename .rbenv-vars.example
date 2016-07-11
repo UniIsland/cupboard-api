@@ -4,3 +4,4 @@ DEPLOY_DIR=/home/app/deploy/cupboard
 DEPLOY_SERVER=cupboard.net
 DEPLOY_USER=app
 SECRET_KEY_BASE=adbffe331c9106b2505e40f10714597c1999a5faf8e05e0601c5d314fb56277bbde30104959b1631c3febf171472b3525e6827930331f4dbdf6ac2d07bdeac77
+SERVERNAME="localhost cupboard-api.local"

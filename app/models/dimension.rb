@@ -14,8 +14,8 @@
 #
 
 class Dimension < ApplicationRecord
-  GROUP_FORMAT = /[a-z][a-z0-9_]+[a-z0-9](\|[a-z][a-z0-9_]+[a-z0-9])*/
-  KEY_FORMAT = /[a-z][a-z0-9_]+[a-z0-9]:[a-z][a-z0-9_]+[a-z0-9](\|[a-z][a-z0-9_]+[a-z0-9]:[a-z][a-z0-9_]+[a-z0-9])*/
+  GROUP_FORMAT = /[a-z][a-z0-9_]*[a-z0-9](\|[a-z][a-z0-9_]*[a-z0-9])*/
+  KEY_FORMAT = /[a-z][a-z0-9_]*[a-z0-9]:[a-z][a-z0-9_]*[a-z0-9](\|[a-z][a-z0-9_]*[a-z0-9]:[a-z][a-z0-9_]*[a-z0-9])*/
 
   attr_readonly :metric_id, :cardinality, :group, :key
 

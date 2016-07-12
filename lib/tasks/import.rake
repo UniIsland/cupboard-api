@@ -2,10 +2,20 @@ require 'csv'
 require 'fileutils'
 
 namespace :import do
+  TSV_DIR = Rails.root + 'tmp/data/tsv'
+  ARCHIVE_DIR = Rails.root + 'tmp/data/archive'
+
+  desc "rsync data from remote server"
+  task :rsync do
+    remove_source = (Rails.env == 'production' ? '--remove-source-files' : '')
+    cmd = "rsync -rz #{remove_source} #{ENV['DATA_SOURCE']} #{TSV_DIR}"
+    puts cmd
+    system cmd
+  end
+
+
   desc "import tsv files"
   task tsv: :environment do
-    TSV_DIR = Rails.root + 'tmp/data/tsv'
-    ARCHIVE_DIR = Rails.root + 'tmp/data/archive'
     CSV_OPT = {
       headers: true,
       col_sep: "\t",

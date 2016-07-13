@@ -70,4 +70,7 @@ namespace :import do
       archive_tsv fn
     end
   end
+
+  desc "rsync and import tsv"
+  task :pull => %w(import:rsync import:tsv)
 end

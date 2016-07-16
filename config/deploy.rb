@@ -8,7 +8,7 @@ set :branch, 'master'
 set :deploy_to, ENV['DEPLOY_DIR']
 set :log_level, :info
 append :linked_files, '.rbenv-vars'
-append :linked_dirs, 'log', 'tmp', 'vendor/bundle'#, '.keys'
+append :linked_dirs, 'log', 'tmp'#, '.keys'
 
 set :default_env, { path: '$HOME/.rbenv/shims:/usr/local/bin:/usr/bin:/bin' }
 set :ssh_options, { forward_agent: true, auth_methods: %w(publickey), port: 10086 }

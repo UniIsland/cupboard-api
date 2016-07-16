@@ -1,4 +1,6 @@
 class DataController < ApplicationController
+  helper_method :nullify_missing_dates
+
   def daily
     @dimensions = if dimensions_param.size == 0
       [current_metric.main_dimension]
@@ -16,6 +18,23 @@ class DataController < ApplicationController
   end
 
   private
+
+  def nullify_missing_dates(records)
+    series = []
+    last_date = nil
+    records.sort_by {|r| r.date} .each do |r|
+      d = Date.parse(r.date)
+      while last_date && (last_date += 1) < d
+        n = r.dup
+        n.date = last_date.strftime
+        n.value = nil
+        series << n
+      end
+      series << r
+      last_date = d
+    end
+    series
+  end
 
   def current_metric
     @current_metric ||= Metric.joins(:namespace).where(

@@ -59,7 +59,7 @@ namespace :import do
     end
 
     def archive_tsv(fn)
-      FileUtils.mv fn, ARCHIVE_DIR, verbose: true, force: true
+      FileUtils.mv fn, ARCHIVE_DIR, verbose: false, force: true
     end
 
     ARCHIVE_DIR.mkpath

@@ -4,18 +4,19 @@
 #
 #  id          :integer          not null, primary key
 #  metric_id   :integer          not null
-#  key         :string(255)      not null
 #  cardinality :integer          not null
+#  group       :string(255)      not null
+#  key         :string(255)      not null
 #
 # Indexes
 #
-#  index_dimensions_on_metric_id_and_cardinality  (metric_id,cardinality)
-#  index_dimensions_on_metric_id_and_key          (metric_id,key) UNIQUE
+#  index_dimensions_on_metric_id_and_cardinality_and_group  (metric_id,cardinality,group)
+#  index_dimensions_on_metric_id_and_key                    (metric_id,key) UNIQUE
 #
 
 class Dimension < ApplicationRecord
   GROUP_FORMAT = /[a-z][a-z0-9_]*[a-z0-9](\|[a-z][a-z0-9_]*[a-z0-9])*/
-  KEY_FORMAT = /[a-z][a-z0-9_]*[a-z0-9]:[a-z0-9_-]+(\|[a-z][a-z0-9_]*[a-z0-9]:[a-z0-9_-]+)*/
+  KEY_FORMAT = /[a-z][a-z0-9_]*[a-z0-9]:[a-z0-9._-]+(\|[a-z][a-z0-9_]*[a-z0-9]:[a-z0-9._-]+)*/
 
   attr_readonly :metric_id, :cardinality, :group, :key
 
@@ -42,6 +43,6 @@ class Dimension < ApplicationRecord
 
   def set_cardinality_and_group
     self[:cardinality] = key.split('|').size
-    self[:group] = key.gsub /:\w+/, ''
+    self[:group] = key.gsub /:[^|]+/, ''
   end
 end

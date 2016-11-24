@@ -8,9 +8,12 @@ namespace :import do
   desc "rsync data from remote server"
   task :rsync do
     remove_source = (Rails.env == 'production' ? '--remove-source-files' : '')
-    cmd = "rsync -rz #{remove_source} #{ENV['DATA_SOURCE']} #{TSV_DIR}"
-    puts cmd
-    system cmd
+    data_sources = ENV['DATA_SOURCE'].split(',')
+    data_sources.each do |s|
+      cmd = "rsync -rz #{remove_source} #{s} #{TSV_DIR}"
+      puts cmd
+      system cmd
+    end
   end
 
 

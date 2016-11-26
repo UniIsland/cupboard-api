@@ -1,0 +1,4 @@
+base:
+  '*':
+    - vars
+    - mysql

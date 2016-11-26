@@ -1,4 +1,6 @@
 RAILS_ENV=development
+DEPLOY_USER=vagrant
+DB_ROOT_PASSWD=cupboardmysql
 DATABASE_PASSWORD=cupboardmysql
 DEPLOY_DIR=/home/app/deploy/cupboard
 DEPLOY_SERVER=cupboard.net

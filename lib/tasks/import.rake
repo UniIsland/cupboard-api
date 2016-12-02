@@ -50,6 +50,7 @@ namespace :import do
           header_processed = true
         end
         metrics.each do |m|
+          dimensions.each { |d| row[d] = 'other' if row[d].nil? || row[d] == '' }
           key = dimensions.reject {|d| row[d].upcase == 'NULL'} .collect {|d| [d,row[d].downcase].join} .join('|')
           dimension = m.dimensions.find_or_create_by! key: key
           record = dimension.daily_records.find_or_initialize_by date: row['date']

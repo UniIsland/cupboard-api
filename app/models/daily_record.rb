@@ -17,7 +17,7 @@ class DailyRecord < ApplicationRecord
 
   belongs_to :dimension
 
-  validates :date, format: { with: /\d{4}-\d{2}-\d{2}/ }, on: :create
+  validates :date, format: { with: /\A\d{4}-\d{2}-\d{2}\z/ }, on: :create
   validates :dimension, presence: true, on: :create
   validates :value, numericality: true
   validate :valid_date_string, on: :create

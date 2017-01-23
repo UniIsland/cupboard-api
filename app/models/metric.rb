@@ -18,7 +18,7 @@ class Metric < ApplicationRecord
   has_many :dimensions
   # has_many :daily_records, through: :dimensions
 
-  validates :name, format: { with: /[a-z][a-z0-9_]+[a-z0-9]/ }, on: :create
+  validates :name, format: { with: /\A[a-z][a-z0-9_]+[a-z0-9]\z/ }, on: :create
   validates :name, uniqueness: { scope: :namespace_id }, on: :create
 
   before_validation :case_down, on: :create

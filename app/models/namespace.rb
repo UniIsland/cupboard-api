@@ -15,7 +15,7 @@ class Namespace < ApplicationRecord
 
   has_many :metrics
 
-  validates :name, format: { with: /\A[a-z][a-z0-9_]+[a-z0-9]\z/ }, on: :create
+  validates :name, format: { with: /\A[a-z][a-z0-9_]*[a-z0-9]\z/ }, on: :create
   validates :name, uniqueness: true, on: :create
 
   before_validation :case_down, on: :create

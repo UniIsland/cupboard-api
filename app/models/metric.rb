@@ -12,13 +12,15 @@
 #
 
 class Metric < ApplicationRecord
+  NAME_FORMAT = /\A[a-z][a-z0-9_]*[a-z0-9](\.[a-z][a-z0-9_]*[a-z0-9])?\z/
+
   attr_readonly :name, :namespace_id
 
   belongs_to :namespace
-  has_many :dimensions
+  has_many :dimensions, dependent: :destroy
   # has_many :daily_records, through: :dimensions
 
-  validates :name, format: { with: /\A[a-z][a-z0-9_]+[a-z0-9]\z/ }, on: :create
+  validates :name, format: { with: NAME_FORMAT }, on: :create
   validates :name, uniqueness: { scope: :namespace_id }, on: :create
 
   before_validation :case_down, on: :create

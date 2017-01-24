@@ -21,7 +21,7 @@ class Dimension < ApplicationRecord
   attr_readonly :metric_id, :cardinality, :group, :key
 
   belongs_to :metric
-  has_many :daily_records
+  has_many :daily_records, dependent: :delete_all
 
   validates :metric, presence: true, on: :create
   validates :cardinality, numericality: { greater_than_or_equal_to: 0, only_integer: true }, on: :create
